@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Pagination from './Pagination';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([])
+  const [showPerPage, setShowPerPage] = useState(50)
+  const [pagination, setPagination] = useState({
+    start: 0,
+    end:showPerPage
+  })
+  
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/comments")
+    .then(res=>setData(res.data))
+  })
+  
+  const onChangePagination = (start, end) => {
+    setPagination({start:start,end:end})
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <table className="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.slice(pagination.start, pagination.end).map((li) => (
+            <tr key={li.id}>
+              <td>{li.id}</td>
+              <td>{li.name}</td>
+              <td>{li.email}</td>
+              <td>{li.body}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <Pagination
+        showPerPage={showPerPage}
+        onChangePagination={onChangePagination}
+        total={data.length}
+      />
     </div>
   );
-}
+};
 
 export default App;
