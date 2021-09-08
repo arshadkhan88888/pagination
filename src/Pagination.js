@@ -58,6 +58,24 @@ const Pagination = ({ showPerPage, onChangePagination, total }) => {
               Next
             </a>
           </li>
+          <li className="page-item">
+            <a
+              className="page-link"
+              href="!#"
+              onClick={() => handleChange("next")}
+            >
+              Nexttt
+            </a>
+          </li>
+          <li className="page-item">
+            <a
+              className="page-link"
+              href="!#"
+              onClick={() => handleChange("next")}
+            >
+              Nexttt
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
