@@ -65,6 +65,7 @@ const Pagination = ({ showPerPage, onChangePagination, total }) => {
               onClick={() => handleChange("next")}
             >
               Next11
+              Nexttt
             </a>
           </li>
           <li className="page-item">
@@ -73,7 +74,7 @@ const Pagination = ({ showPerPage, onChangePagination, total }) => {
               href="!#"
               onClick={() => handleChange("next")}
             >
-              Next22
+              Nexttt
             </a>
           </li>
         </ul>
